@@ -4,13 +4,13 @@
 [ext_resource type="Script" path="res://Script/SuperPowers/selection/power_selection.gd" id="1_swmgc"]
 [ext_resource type="PackedScene" uid="uid://b4mccc8yd35ot" path="res://Scene/SuperPower/power_cards.tscn" id="1_x7eqb"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h304u"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uvph1"]
 texture = ExtResource("1_kkl6n")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_luaps"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yyjvo"]
 texture = ExtResource("1_kkl6n")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qgieu"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eo56c"]
 texture = ExtResource("1_kkl6n")
 
 [node name="PowerSelection" type="Control"]
@@ -41,18 +41,18 @@ columns = 3
 
 [node name="PowerCards" parent="GridContainer" instance=ExtResource("1_x7eqb")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_h304u")
+theme_override_styles/panel = SubResource("StyleBoxTexture_uvph1")
 card_texture = ExtResource("1_kkl6n")
 card_effect = "Heavy_Punch"
 
 [node name="PowerCards2" parent="GridContainer" instance=ExtResource("1_x7eqb")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_luaps")
+theme_override_styles/panel = SubResource("StyleBoxTexture_yyjvo")
 card_texture = ExtResource("1_kkl6n")
 card_effect = "Teleport"
 
 [node name="PowerCards3" parent="GridContainer" instance=ExtResource("1_x7eqb")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qgieu")
+theme_override_styles/panel = SubResource("StyleBoxTexture_eo56c")
 card_texture = ExtResource("1_kkl6n")
 card_effect = "super_speed"

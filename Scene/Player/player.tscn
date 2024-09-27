@@ -212,6 +212,7 @@ size_flags_horizontal = 0
 position = Vector2(0, -0.833333)
 
 [node name="Heavy Punch" parent="." instance=ExtResource("3_tvdsy")]
+visible = false
 position = Vector2(3.33333, -4.16667)
 scale = Vector2(0.8, 0.8)
 

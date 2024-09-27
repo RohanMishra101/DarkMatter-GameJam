@@ -33,7 +33,6 @@ func on_power_card_selected(card_effect):
 		"Teleport":
 			print("Teleport Yet to implement")
 		"super_speed":
-			#speed = 400
 			print("super_speed Yet to implement")
 
 func _process(_delta):
@@ -48,7 +47,6 @@ func _process(_delta):
 		match super_power:
 			"Heavy_Punch":
 				print("The effect of Heavy punch will be set here")
-				
 			"Teleport":
 				print("Teleport Yet to implement")
 			"super_speed":
