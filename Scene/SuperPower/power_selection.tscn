@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://dex3idhdjw4s1"]
+
+[ext_resource type="Texture2D" uid="uid://cnpfwpmikishg" path="res://Assets/Cards/Heavy_punch_card.png" id="1_kkl6n"]
+[ext_resource type="Script" path="res://Script/SuperPowers/selection/power_selection.gd" id="1_swmgc"]
+[ext_resource type="PackedScene" uid="uid://b4mccc8yd35ot" path="res://Scene/SuperPower/power_cards.tscn" id="1_x7eqb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h304u"]
+texture = ExtResource("1_kkl6n")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_luaps"]
+texture = ExtResource("1_kkl6n")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qgieu"]
+texture = ExtResource("1_kkl6n")
+
+[node name="PowerSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_swmgc")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -150.0
+offset_right = 100.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
+
+[node name="PowerCards" parent="GridContainer" instance=ExtResource("1_x7eqb")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_h304u")
+card_texture = ExtResource("1_kkl6n")
+card_effect = "Heavy_Punch"
+
+[node name="PowerCards2" parent="GridContainer" instance=ExtResource("1_x7eqb")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_luaps")
+card_texture = ExtResource("1_kkl6n")
+card_effect = "Teleport"
+
+[node name="PowerCards3" parent="GridContainer" instance=ExtResource("1_x7eqb")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qgieu")
+card_texture = ExtResource("1_kkl6n")
+card_effect = "super_speed"

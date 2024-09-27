@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4mccc8yd35ot"]
+
+[ext_resource type="Script" path="res://Script/SuperPowers/Cards/power_cards.gd" id="1_rbs2b"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_f4yry"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lh2vq"]
+
+[node name="PowerCards" type="Panel"]
+custom_minimum_size = Vector2(300, 450)
+theme_override_styles/panel = SubResource("StyleBoxTexture_f4yry")
+script = ExtResource("1_rbs2b")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(300, 450)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_lh2vq")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
