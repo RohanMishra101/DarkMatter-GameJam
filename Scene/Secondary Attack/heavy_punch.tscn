@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cyxoaicpdd3r4"]
+[gd_scene load_steps=4 format=3 uid="uid://cyxoaicpdd3r4"]
 
 [ext_resource type="Texture2D" uid="uid://c2jatl7ctcjer" path="res://Assets/Super Powers/heavy_punch.png" id="1_50vh5"]
+[ext_resource type="Script" path="res://Script/SuperPowers/Super_punch/heavy_punch.gd" id="1_j08mf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tx0pc"]
 size = Vector2(6, 13)
 
 [node name="Heavy Punch" type="Area2D"]
+script = ExtResource("1_j08mf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_50vh5")

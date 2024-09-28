@@ -21,11 +21,16 @@ GameManager="*res://Script/Game Manager/GameManager.gd"
 
 [display]
 
-window/size/viewport_width=1200
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="res://Assets/Curser/curser-white.png"
 mouse_cursor/custom_image_hotspot=Vector2(16, 16)
+
+[global_group]
+
+Tablet="This is a Stone Tablet Group"
+Projectiles="This is a Projectile"
 
 [input]
 
@@ -68,6 +73,18 @@ secondary_attack={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(241, 25),"global_position":Vector2(250, 71),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemy"
+2d_physics/layer_3="Border"
+2d_physics/layer_4="Projectiles"
+2d_physics/layer_5="Tablet"
 
 [rendering]
 

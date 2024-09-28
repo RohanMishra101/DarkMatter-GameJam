@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dw2a3dqa82gfa"]
+
+[ext_resource type="Script" path="res://Script/Stone Tablet/stone_tablet.gd" id="1_gb0i3"]
+[ext_resource type="Texture2D" uid="uid://n3d4srpqq0gr" path="res://Assets/Stone Tablets/soul_stand.png" id="2_46m1b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rte5d"]
+radius = 12.0416
+
+[node name="Stone Tablet" type="Area2D" groups=["Tablet"]]
+collision_layer = 16
+collision_mask = 11
+script = ExtResource("1_gb0i3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_46m1b")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4)
+shape = SubResource("CircleShape2D_rte5d")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

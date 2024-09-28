@@ -10,8 +10,11 @@ var is_secondary_enable := false
 
 var mouseDir
 
-signal shoot_thukk(pos, mouse_angle)
+var punch_Distance
 
+signal shoot_thukk(pos, mouse_angle)
+signal is_mouse_enable(enable_mouse)
+#signal secondary_weapon_shoot
 func _ready():
 	velocity = Vector2.ZERO
 	connect_power_card()
@@ -38,7 +41,10 @@ func on_power_card_selected(card_effect):
 func _process(_delta):
 	handle_cards_section()
 	mouseDir = get_mouse_direction()
-	$"Heavy Punch".rotation_degrees = rad_to_deg(mouseDir.angle())
+	
+	handleMouseFunction()
+	handlePathRotation()
+	
 	if Input.is_action_just_pressed("main_attack"):
 		handle_attack()
 	
@@ -46,10 +52,12 @@ func _process(_delta):
 		#print("Weapon Attack Yet to implement")
 		match super_power:
 			"Heavy_Punch":
+				#secondary_weapon_shoot.emit(secondary_weapond_shoot_distance,rad_to_deg(mouseDir.angle()))
 				print("The effect of Heavy punch will be set here")
 			"Teleport":
 				print("Teleport Yet to implement")
 			"super_speed":
+				#Player spped is increased and bullet 
 				#speed = 400
 				print("super_speed Yet to implement")
 
@@ -104,3 +112,13 @@ func _on_attack_animation_finished():
 
 func get_mouse_direction():
 	return (get_global_mouse_position() - position).normalized()
+
+func handleMouseFunction():
+	if $CanvasLayer/PowerSelection.visible:
+		is_mouse_enable.emit(true)
+	if not $CanvasLayer/PowerSelection.visible:
+		is_mouse_enable.emit(false)
+
+#
+func handlePathRotation():
+	$"Heavy Punch".rotation_degrees = rad_to_deg(mouseDir.angle())

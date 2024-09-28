@@ -1,14 +1,80 @@
-[gd_scene load_steps=5 format=3 uid="uid://dv5kc2h2elnby"]
+[gd_scene load_steps=7 format=3 uid="uid://dv5kc2h2elnby"]
 
 [ext_resource type="Script" path="res://Script/World/world.gd" id="1_jutir"]
 [ext_resource type="PackedScene" uid="uid://dwlp32y1od7j8" path="res://Scene/Player/player.tscn" id="1_krgu7"]
 [ext_resource type="PackedScene" uid="uid://d1xb6vemncalp" path="res://Scene/Overworld Tilemap/tile_map.tscn" id="2_hkb3f"]
 [ext_resource type="Texture2D" uid="uid://bgb107bpoprqs" path="res://Assets/Curser/curser-white.png" id="4_bdvir"]
+[ext_resource type="PackedScene" uid="uid://dw2a3dqa82gfa" path="res://Scene/Stone Tablet/stone_tablet.tscn" id="5_joepj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rdbag"]
+radius = 11.1803
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_jutir")
 
 [node name="TileMap" parent="." instance=ExtResource("2_hkb3f")]
+
+[node name="Stone tablet Collection" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Stone tablet Collection"]
+position = Vector2(179, -1608)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone tablet Collection/StaticBody2D"]
+shape = SubResource("CircleShape2D_rdbag")
+
+[node name="Stone Tablet" parent="Stone tablet Collection/StaticBody2D" instance=ExtResource("5_joepj")]
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Stone tablet Collection"]
+position = Vector2(2542, -1257)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone tablet Collection/StaticBody2D2"]
+shape = SubResource("CircleShape2D_rdbag")
+
+[node name="Stone Tablet" parent="Stone tablet Collection/StaticBody2D2" instance=ExtResource("5_joepj")]
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Stone tablet Collection"]
+position = Vector2(2484, 1112)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone tablet Collection/StaticBody2D3"]
+shape = SubResource("CircleShape2D_rdbag")
+
+[node name="Stone Tablet" parent="Stone tablet Collection/StaticBody2D3" instance=ExtResource("5_joepj")]
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Stone tablet Collection"]
+position = Vector2(-954, 954)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone tablet Collection/StaticBody2D4"]
+shape = SubResource("CircleShape2D_rdbag")
+
+[node name="Stone Tablet" parent="Stone tablet Collection/StaticBody2D4" instance=ExtResource("5_joepj")]
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="Stone tablet Collection"]
+position = Vector2(-2227, -194)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone tablet Collection/StaticBody2D5"]
+shape = SubResource("CircleShape2D_rdbag")
+
+[node name="Stone Tablet" parent="Stone tablet Collection/StaticBody2D5" instance=ExtResource("5_joepj")]
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="Stone tablet Collection"]
+position = Vector2(-2338, -1641)
+collision_layer = 16
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stone tablet Collection/StaticBody2D6"]
+shape = SubResource("CircleShape2D_rdbag")
+
+[node name="Stone Tablet" parent="Stone tablet Collection/StaticBody2D6" instance=ExtResource("5_joepj")]
 
 [node name="Player" parent="." instance=ExtResource("1_krgu7")]
 
@@ -25,4 +91,5 @@ position = Vector2(0, 1)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_bdvir")
 
+[connection signal="is_mouse_enable" from="Player" to="." method="_on_player_is_mouse_enable"]
 [connection signal="shoot_thukk" from="Player" to="." method="_on_player_shoot_thukk"]
