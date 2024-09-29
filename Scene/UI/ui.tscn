@@ -1,0 +1,186 @@
+[gd_scene load_steps=10 format=3 uid="uid://4y6fq70d04dk"]
+
+[ext_resource type="Script" path="res://Script/UI/ui.gd" id="1_mqii8"]
+[ext_resource type="FontFile" uid="uid://cxjjsp5bq7fmi" path="res://Assets/Font/PressStart2P-Regular.ttf" id="2_ayth4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4p21"]
+font = ExtResource("2_ayth4")
+font_size = 24
+outline_size = 9
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gxoip"]
+font = ExtResource("2_ayth4")
+font_size = 42
+outline_size = 11
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pigbs"]
+font = ExtResource("2_ayth4")
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ee0wb"]
+font = ExtResource("2_ayth4")
+font_size = 24
+
+[sub_resource type="Animation" id="Animation_v75vx"]
+resource_name = "reduced_time_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/CanvasLayer/ReducedTimer/reduced_time:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 83), Vector2(0, 54)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/CanvasLayer/ReducedTimer/reduced_time:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, -1.56),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b6xjn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/CanvasLayer/ReducedTimer/reduced_time:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 83)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer/CanvasLayer/ReducedTimer/reduced_time:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0jrxr"]
+_data = {
+"RESET": SubResource("Animation_b6xjn"),
+"reduced_time_animation": SubResource("Animation_v75vx")
+}
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mqii8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer"]
+
+[node name="accelerated_time" type="HBoxContainer" parent="MarginContainer/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.525
+anchor_right = 1.0
+offset_left = 94.9999
+offset_bottom = 84.0
+grow_horizontal = 0
+
+[node name="times" type="Label" parent="MarginContainer/CanvasLayer/accelerated_time"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "x1"
+label_settings = SubResource("LabelSettings_a4p21")
+
+[node name="TimerBox" type="HBoxContainer" parent="MarginContainer/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.389
+anchor_right = 0.656
+offset_left = 112.12
+offset_right = -5.52002
+offset_bottom = 75.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+
+[node name="TimerLabel" type="Label" parent="MarginContainer/CanvasLayer/TimerBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "00 : 00"
+label_settings = SubResource("LabelSettings_gxoip")
+
+[node name="ReducedTimer" type="HBoxContainer" parent="MarginContainer/CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.169
+offset_left = -48.0
+offset_right = 48.0
+offset_bottom = -57.52
+grow_horizontal = 2
+
+[node name="reduced_time" type="Label" parent="MarginContainer/CanvasLayer/ReducedTimer"]
+layout_mode = 2
+text = "-00:00"
+label_settings = SubResource("LabelSettings_pigbs")
+
+[node name="Abilities" type="HBoxContainer" parent="MarginContainer/CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -445.0
+offset_top = -378.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+
+[node name="icon" type="Sprite2D" parent="MarginContainer/CanvasLayer/Abilities"]
+position = Vector2(235, 186)
+scale = Vector2(2.5, 2.5)
+
+[node name="cooldown" type="Label" parent="MarginContainer/CanvasLayer/Abilities/icon"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = -32.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "00"
+label_settings = SubResource("LabelSettings_ee0wb")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0jrxr")
+}
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -4,7 +4,7 @@ extends Control
 
 
 func _on_play_btn_pressed():
-	print("Hello")
+	GameManager._changeScene(GameManager.world)
 
 
 func _on_how_btn_pressed():

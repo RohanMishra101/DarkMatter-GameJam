@@ -9,6 +9,8 @@ var custom_cursor: Sprite2D
 
 var is_mouse_visible := false
 #signal distance_from_player_to_cursor(distance)
+
+
 func _ready():
 	custom_cursor = $CustomCursorSprite
 

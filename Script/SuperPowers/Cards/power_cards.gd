@@ -12,8 +12,6 @@ func _ready():
 		stylebox.texture = card_texture
 		
 		add_theme_stylebox_override("panel", stylebox)
-	
-
 
 func _on_button_pressed():
 	print("A signal will be passed with the card effect : ", card_effect)

@@ -2,9 +2,7 @@ extends Area2D
 
 var hit_count := 0
 
-signal tablet_secured(num)
-
-
+#signal tablet_secured(num)
 
 func hit():
 	if hit_count < 4:

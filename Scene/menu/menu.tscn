@@ -3,27 +3,26 @@
 [ext_resource type="Script" path="res://Script/Menu/menu.gd" id="1_px1v6"]
 [ext_resource type="Texture2D" uid="uid://daj53dyhs7ech" path="res://Assets/UI/PNG/Green/Default/button_rectangle_gloss.png" id="1_swpfc"]
 [ext_resource type="Texture2D" uid="uid://ci045dw364jmi" path="res://Assets/UI/PNG/Green/Default/button_rectangle_gradient.png" id="3_kwsgn"]
-[ext_resource type="FontFile" uid="uid://es6myb3jr1fm" path="res://Assets/Font/m5x7.ttf" id="3_md4tc"]
+[ext_resource type="FontFile" uid="uid://cxjjsp5bq7fmi" path="res://Assets/Font/PressStart2P-Regular.ttf" id="4_1nkbi"]
 [ext_resource type="Texture2D" uid="uid://dj26flofrp6k7" path="res://Assets/UI/PNG/Yellow/Default/button_rectangle_gloss.png" id="4_2h33s"]
 [ext_resource type="Texture2D" uid="uid://bt6nyaqn6l87b" path="res://Assets/UI/PNG/Red/Default/button_rectangle_depth_gloss.png" id="5_2otps"]
 [ext_resource type="Texture2D" uid="uid://b7ak4p0dutrrw" path="res://Assets/UI/PNG/Red/Default/button_rectangle_gloss.png" id="5_6sfrx"]
 [ext_resource type="Texture2D" uid="uid://c2w4jx7uxryrm" path="res://Assets/UI/PNG/Yellow/Default/button_rectangle_gradient.png" id="6_fjg3y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_actas"]
-font = ExtResource("3_md4tc")
-font_size = 42
+font = ExtResource("4_1nkbi")
+font_size = 32
 outline_size = 11
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_kcwas"]
-font = ExtResource("3_md4tc")
-font_size = 42
+font = ExtResource("4_1nkbi")
 outline_size = 11
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_n8k0p"]
-font = ExtResource("3_md4tc")
-font_size = 42
+font = ExtResource("4_1nkbi")
+font_size = 32
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 

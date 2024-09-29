@@ -220,10 +220,3 @@ position = Vector2(0, -0.833333)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rhems")
 animation = &"idle_main_attack"
-
-[node name="secondary_weapon_cooldown" type="Timer" parent="."]
-
-[node name="super_speed" type="Timer" parent="."]
-
-[connection signal="timeout" from="secondary_weapon_cooldown" to="." method="_on_secondary_weapon_cooldown_timeout"]
-[connection signal="timeout" from="super_speed" to="." method="_on_super_speed_timeout"]

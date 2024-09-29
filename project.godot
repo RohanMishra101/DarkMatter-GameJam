@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Hero-of-Hassles"
-run/main_scene="res://Scene/World/world.tscn"
+run/main_scene="res://Scene/menu/menu.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,7 @@ GameManager="*res://Script/Game Manager/GameManager.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 mouse_cursor/custom_image="res://Assets/Curser/curser-white.png"
 mouse_cursor/custom_image_hotspot=Vector2(16, 16)
 
