@@ -1,17 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://dex3idhdjw4s1"]
+[gd_scene load_steps=10 format=3 uid="uid://dex3idhdjw4s1"]
 
-[ext_resource type="Texture2D" uid="uid://cnpfwpmikishg" path="res://Assets/Cards/Heavy_punch_card.png" id="1_kkl6n"]
 [ext_resource type="Script" path="res://Script/SuperPowers/selection/power_selection.gd" id="1_swmgc"]
 [ext_resource type="PackedScene" uid="uid://b4mccc8yd35ot" path="res://Scene/SuperPower/power_cards.tscn" id="1_x7eqb"]
+[ext_resource type="Texture2D" uid="uid://bbtdodd1smyd8" path="res://Assets/Cards/teleport.png" id="4_gdgl5"]
+[ext_resource type="FontFile" uid="uid://cxjjsp5bq7fmi" path="res://Assets/Font/PressStart2P-Regular.ttf" id="5_8ap2s"]
+[ext_resource type="Texture2D" uid="uid://b2vkgh4lfdexk" path="res://Assets/Cards/super_speed.png" id="5_eluha"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h84ty"]
-texture = ExtResource("1_kkl6n")
+[sub_resource type="LabelSettings" id="LabelSettings_t0vfd"]
+font = ExtResource("5_8ap2s")
+font_size = 42
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qm0ry"]
-texture = ExtResource("1_kkl6n")
+[sub_resource type="LabelSettings" id="LabelSettings_h51xc"]
+font = ExtResource("5_8ap2s")
+font_size = 24
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kwh8m"]
-texture = ExtResource("1_kkl6n")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_82onr"]
+texture = ExtResource("4_gdgl5")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ym0wh"]
+texture = ExtResource("5_eluha")
 
 [node name="PowerSelection" type="Control"]
 layout_mode = 3
@@ -21,6 +28,35 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_swmgc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -294.0
+offset_top = 135.0
+offset_right = 294.0
+offset_bottom = 177.0
+grow_horizontal = 2
+text = "SELECT ABILITY"
+label_settings = SubResource("LabelSettings_t0vfd")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -564.0
+offset_top = -326.0
+offset_right = 564.0
+offset_bottom = -284.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "ONCE A ABILITY IS SELECET YOU CAN NOT CHANGE IT"
+label_settings = SubResource("LabelSettings_h51xc")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -39,20 +75,14 @@ theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
 
-[node name="PowerCards" parent="GridContainer" instance=ExtResource("1_x7eqb")]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_h84ty")
-card_texture = ExtResource("1_kkl6n")
-card_effect = "Heavy_Punch"
-
 [node name="PowerCards2" parent="GridContainer" instance=ExtResource("1_x7eqb")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_qm0ry")
-card_texture = ExtResource("1_kkl6n")
+theme_override_styles/panel = SubResource("StyleBoxTexture_82onr")
+card_texture = ExtResource("4_gdgl5")
 card_effect = "Teleport"
 
 [node name="PowerCards3" parent="GridContainer" instance=ExtResource("1_x7eqb")]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxTexture_kwh8m")
-card_texture = ExtResource("1_kkl6n")
+theme_override_styles/panel = SubResource("StyleBoxTexture_ym0wh")
+card_texture = ExtResource("5_eluha")
 card_effect = "super_speed"

@@ -1,5 +1,8 @@
 extends Node2D
 
+@onready var enemy_spawner = $"Enemy Spawner"
+@onready var audio_stream_player = $AudioStreamPlayer
+
 var thukk_scene = preload("res://Scene/Projectiles/thukk.tscn")
 
 var max_distance = 100
@@ -9,10 +12,12 @@ var custom_cursor: Sprite2D
 
 var is_mouse_visible := false
 #signal distance_from_player_to_cursor(distance)
-
-
+var enemy
+var can_enemy_spawn
 func _ready():
 	custom_cursor = $CustomCursorSprite
+	audio_stream_player.play()
+	GameManager.total_tablet_secured = 0
 
 func _process(_delta):
 	if not is_mouse_visible:
@@ -44,3 +49,15 @@ func _on_player_shoot_thukk(pos,mouse_angle):
 
 func _on_player_is_mouse_enable(enable_mouse):
 	is_mouse_visible = enable_mouse
+
+
+func _on_enemy_spawner_spawn_enemy(spawn_position):
+	if can_enemy_spawn:
+		enemy = GameManager.enemy_1.instantiate()
+		enemy.position = spawn_position
+		#print("New Enemy Spawned at",spawn_position)
+		enemy_spawner.add_child(enemy)
+		enemy.connect("died", Callable(self, "_on_enemy_died"))
+
+func _on_player_enable_enemy(enable):
+	can_enemy_spawn = enable

@@ -1,13 +1,22 @@
-[gd_scene load_steps=12 format=3 uid="uid://wt381rau5lk8"]
+[gd_scene load_steps=16 format=3 uid="uid://wt381rau5lk8"]
 
 [ext_resource type="Script" path="res://Script/Menu/menu.gd" id="1_px1v6"]
 [ext_resource type="Texture2D" uid="uid://daj53dyhs7ech" path="res://Assets/UI/PNG/Green/Default/button_rectangle_gloss.png" id="1_swpfc"]
+[ext_resource type="Texture2D" uid="uid://chopn6l4qgg3n" path="res://Assets/Environment/ground.png" id="2_q2shi"]
+[ext_resource type="Texture2D" uid="uid://mfluo834vxi3" path="res://Assets/Player/Tileset/Player.png" id="2_y0kao"]
+[ext_resource type="Texture2D" uid="uid://dtpwn1iuqokv0" path="res://Assets/Projectiles/Thukk.png" id="3_djov7"]
 [ext_resource type="Texture2D" uid="uid://ci045dw364jmi" path="res://Assets/UI/PNG/Green/Default/button_rectangle_gradient.png" id="3_kwsgn"]
 [ext_resource type="FontFile" uid="uid://cxjjsp5bq7fmi" path="res://Assets/Font/PressStart2P-Regular.ttf" id="4_1nkbi"]
 [ext_resource type="Texture2D" uid="uid://dj26flofrp6k7" path="res://Assets/UI/PNG/Yellow/Default/button_rectangle_gloss.png" id="4_2h33s"]
 [ext_resource type="Texture2D" uid="uid://bt6nyaqn6l87b" path="res://Assets/UI/PNG/Red/Default/button_rectangle_depth_gloss.png" id="5_2otps"]
 [ext_resource type="Texture2D" uid="uid://b7ak4p0dutrrw" path="res://Assets/UI/PNG/Red/Default/button_rectangle_gloss.png" id="5_6sfrx"]
 [ext_resource type="Texture2D" uid="uid://c2w4jx7uxryrm" path="res://Assets/UI/PNG/Yellow/Default/button_rectangle_gradient.png" id="6_fjg3y"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s5pqv"]
+font = ExtResource("4_1nkbi")
+font_size = 112
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_actas"]
 font = ExtResource("4_1nkbi")
@@ -42,11 +51,57 @@ offset_bottom = 40.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer"]
 
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_q2shi")
+
+[node name="Sprite2D4" type="Sprite2D" parent="MarginContainer/CanvasLayer"]
+position = Vector2(1279, 196)
+rotation = 0.328122
+scale = Vector2(15.5313, 15.5313)
+texture = ExtResource("3_djov7")
+flip_h = true
+
+[node name="Label" type="Label" parent="MarginContainer/CanvasLayer"]
+offset_left = 166.0
+offset_top = 185.0
+offset_right = 1446.0
+offset_bottom = 313.0
+rotation = -0.0698132
+text = "SPIT-IN-IT"
+label_settings = SubResource("LabelSettings_s5pqv")
+
 [node name="Designer" type="HBoxContainer" parent="MarginContainer/CanvasLayer"]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 695.0
+offset_right = 907.0
 grow_vertical = 2
+
+[node name="Sprite2D2" type="Sprite2D" parent="MarginContainer/CanvasLayer/Designer"]
+position = Vector2(876, 907)
+rotation = 0.328122
+scale = Vector2(15.5313, 15.5313)
+texture = ExtResource("3_djov7")
+flip_h = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="MarginContainer/CanvasLayer/Designer"]
+position = Vector2(1743, 737)
+rotation = 0.328122
+scale = Vector2(15.5313, 15.5313)
+texture = ExtResource("3_djov7")
+flip_h = true
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/CanvasLayer/Designer"]
+position = Vector2(346, 883)
+rotation = 0.305433
+scale = Vector2(72.67, 72.67)
+texture = ExtResource("2_y0kao")
+hframes = 6
+vframes = 4
 
 [node name="Menu" type="HBoxContainer" parent="MarginContainer/CanvasLayer"]
 anchors_preset = 11

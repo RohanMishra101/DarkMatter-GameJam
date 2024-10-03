@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv5kc2h2elnby"]
+[gd_scene load_steps=10 format=3 uid="uid://dv5kc2h2elnby"]
 
 [ext_resource type="Script" path="res://Script/World/world.gd" id="1_jutir"]
 [ext_resource type="PackedScene" uid="uid://dwlp32y1od7j8" path="res://Scene/Player/player.tscn" id="1_krgu7"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bgb107bpoprqs" path="res://Assets/Curser/curser-white.png" id="4_bdvir"]
 [ext_resource type="PackedScene" uid="uid://dw2a3dqa82gfa" path="res://Scene/Stone Tablet/stone_tablet.tscn" id="5_joepj"]
 [ext_resource type="PackedScene" uid="uid://4y6fq70d04dk" path="res://Scene/UI/ui.tscn" id="6_ww10o"]
+[ext_resource type="PackedScene" uid="uid://bsg30fsvka3cj" path="res://Scene/enemy/enemy_spawner.tscn" id="7_fi0xj"]
+[ext_resource type="AudioStream" uid="uid://f1inbvn5g84i" path="res://Assets/Music/Eric Skiff - A Night Of Dizzy Spells ♫ NO COPYRIGHT 8-bit Music   Background(MP3_160K).mp3" id="8_eq276"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rdbag"]
 radius = 11.1803
@@ -18,7 +20,7 @@ script = ExtResource("1_jutir")
 [node name="Player" parent="." instance=ExtResource("1_krgu7")]
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2.5, 2.5)
+zoom = Vector2(2, 2)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 10.0
@@ -26,7 +28,7 @@ position_smoothing_speed = 10.0
 [node name="Stone tablet Collection" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Stone tablet Collection"]
-position = Vector2(179, -1608)
+position = Vector2(9, -1375)
 collision_layer = 16
 collision_mask = 3
 
@@ -36,7 +38,7 @@ shape = SubResource("CircleShape2D_rdbag")
 [node name="Stone Tablet" parent="Stone tablet Collection/StaticBody2D" instance=ExtResource("5_joepj")]
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Stone tablet Collection"]
-position = Vector2(2542, -1257)
+position = Vector2(1970, -794)
 collision_layer = 16
 collision_mask = 3
 
@@ -46,7 +48,7 @@ shape = SubResource("CircleShape2D_rdbag")
 [node name="Stone Tablet" parent="Stone tablet Collection/StaticBody2D2" instance=ExtResource("5_joepj")]
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Stone tablet Collection"]
-position = Vector2(2484, 1112)
+position = Vector2(119, 10)
 collision_layer = 16
 collision_mask = 3
 
@@ -56,7 +58,7 @@ shape = SubResource("CircleShape2D_rdbag")
 [node name="Stone Tablet" parent="Stone tablet Collection/StaticBody2D3" instance=ExtResource("5_joepj")]
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="Stone tablet Collection"]
-position = Vector2(-954, 954)
+position = Vector2(93, 992)
 collision_layer = 16
 collision_mask = 3
 
@@ -66,7 +68,7 @@ shape = SubResource("CircleShape2D_rdbag")
 [node name="Stone Tablet" parent="Stone tablet Collection/StaticBody2D4" instance=ExtResource("5_joepj")]
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="Stone tablet Collection"]
-position = Vector2(-2227, -194)
+position = Vector2(-1947, -198)
 collision_layer = 16
 collision_mask = 3
 
@@ -94,10 +96,25 @@ texture = ExtResource("4_bdvir")
 
 [node name="UI" parent="." instance=ExtResource("6_ww10o")]
 
+[node name="enemy_spawn_timer" type="Timer" parent="."]
+
+[node name="Enemy Spawner" parent="." instance=ExtResource("7_fi0xj")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_eq276")
+volume_db = -35.898
+parameters/looping = true
+
 [connection signal="accelerated_timer" from="Player" to="UI" method="_on_player_accelerated_timer"]
 [connection signal="depricate_time" from="Player" to="UI" method="_on_player_depricate_time"]
+[connection signal="enable_enemy" from="Player" to="." method="_on_player_enable_enemy"]
+[connection signal="healthBarProgress" from="Player" to="UI" method="_on_player_health_bar_progress"]
 [connection signal="is_mouse_enable" from="Player" to="." method="_on_player_is_mouse_enable"]
+[connection signal="primary_ability_overloded" from="Player" to="UI" method="_on_player_primary_ability_overloded"]
 [connection signal="secondary_ui_icon" from="Player" to="UI" method="_on_player_secondary_ui_icon"]
 [connection signal="set_timer" from="Player" to="UI" method="_on_player_set_timer"]
 [connection signal="shoot_thukk" from="Player" to="." method="_on_player_shoot_thukk"]
+[connection signal="shooting_progress" from="Player" to="UI" method="_on_player_shooting_progress"]
 [connection signal="ui_cooldown_time" from="Player" to="UI" method="_on_player_ui_cooldown_time"]
+[connection signal="timeout" from="enemy_spawn_timer" to="." method="_on_enemy_spawn_timer_timeout"]
+[connection signal="spawn_enemy" from="Enemy Spawner" to="." method="_on_enemy_spawner_spawn_enemy"]

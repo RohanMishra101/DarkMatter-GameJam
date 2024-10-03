@@ -1,9 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://dwlp32y1od7j8"]
+[gd_scene load_steps=32 format=3 uid="uid://dwlp32y1od7j8"]
 
 [ext_resource type="Texture2D" uid="uid://mfluo834vxi3" path="res://Assets/Player/Tileset/Player.png" id="1_os51t"]
 [ext_resource type="Script" path="res://Script/Player/player.gd" id="1_vg1qg"]
 [ext_resource type="PackedScene" uid="uid://dex3idhdjw4s1" path="res://Scene/SuperPower/power_selection.tscn" id="3_g8smp"]
 [ext_resource type="PackedScene" uid="uid://cyxoaicpdd3r4" path="res://Scene/Secondary Attack/heavy_punch.tscn" id="3_tvdsy"]
+[ext_resource type="AudioStream" uid="uid://bdkrwokjtop0i" path="res://Assets/Music/mixkit-short-laser-gun-shot-1670.mp3" id="5_jmj5e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7c06j"]
+size = Vector2(10.8333, 13.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctqdd"]
 size = Vector2(11, 14)
@@ -192,11 +196,18 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player_Hitbox"]]
 position = Vector2(0, 1)
 scale = Vector2(1.2, 1.2)
-collision_mask = 20
+collision_mask = 22
 script = ExtResource("1_vg1qg")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Player_Hitbox"]]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.416666, 4.76837e-07)
+shape = SubResource("RectangleShape2D_7c06j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 0)
@@ -225,5 +236,16 @@ animation = &"idle_main_attack"
 
 [node name="super_speed" type="Timer" parent="."]
 
+[node name="overload_timer" type="Timer" parent="."]
+
+[node name="primary_ability_cooldown_timer" type="Timer" parent="."]
+
+[node name="bullet_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jmj5e")
+volume_db = -9.502
+pitch_scale = 0.42
+
 [connection signal="timeout" from="secondary_weapon_cooldown" to="." method="_on_secondary_weapon_cooldown_timeout"]
 [connection signal="timeout" from="super_speed" to="." method="_on_super_speed_timeout"]
+[connection signal="timeout" from="overload_timer" to="." method="_on_overload_timer_timeout"]
+[connection signal="timeout" from="primary_ability_cooldown_timer" to="." method="_on_primary_ability_cooldown_timer_timeout"]

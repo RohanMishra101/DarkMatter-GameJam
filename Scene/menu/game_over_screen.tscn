@@ -1,0 +1,154 @@
+[gd_scene load_steps=15 format=3 uid="uid://7pwr6fbm4due"]
+
+[ext_resource type="Script" path="res://Script/Menu/game_over_screen.gd" id="1_h5err"]
+[ext_resource type="Texture2D" uid="uid://chopn6l4qgg3n" path="res://Assets/Environment/ground.png" id="2_tqfgy"]
+[ext_resource type="FontFile" uid="uid://cxjjsp5bq7fmi" path="res://Assets/Font/PressStart2P-Regular.ttf" id="3_18hyt"]
+[ext_resource type="Texture2D" uid="uid://daj53dyhs7ech" path="res://Assets/UI/PNG/Green/Default/button_rectangle_gloss.png" id="3_gk8l8"]
+[ext_resource type="Texture2D" uid="uid://ci045dw364jmi" path="res://Assets/UI/PNG/Green/Default/button_rectangle_gradient.png" id="4_ep40h"]
+[ext_resource type="AudioStream" uid="uid://fybyl4u6411x" path="res://Assets/Music/mixkit-completion-of-a-level-2063.mp3" id="8_oeagw"]
+[ext_resource type="Texture2D" uid="uid://b7ak4p0dutrrw" path="res://Assets/UI/PNG/Red/Default/button_rectangle_gloss.png" id="8_rsev4"]
+[ext_resource type="Texture2D" uid="uid://dtq1r0k0e80b" path="res://Assets/UI/PNG/Red/Default/button_rectangle_gradient.png" id="9_bqusn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yucrs"]
+font = ExtResource("3_18hyt")
+font_size = 74
+
+[sub_resource type="LabelSettings" id="LabelSettings_uumok"]
+font = ExtResource("3_18hyt")
+font_size = 18
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_li1s1"]
+load_path = "res://.godot/imported/button_rectangle_gloss.png-019a715fc17eb13f49376fece17126d3.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bxt1y"]
+load_path = "res://.godot/imported/button_rectangle_gradient.png-ea32ca0546b516235cf71a5312dcca7b.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_nsal3"]
+font = ExtResource("3_18hyt")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_jejfl"]
+font = ExtResource("3_18hyt")
+font_size = 18
+
+[node name="GameOver Screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h5err")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer"]
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tqfgy")
+
+[node name="Label" type="Label" parent="MarginContainer/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = -271.0
+offset_right = 148.0
+offset_bottom = -197.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Test"
+label_settings = SubResource("LabelSettings_yucrs")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play Again" type="TouchScreenButton" parent="MarginContainer/CanvasLayer/HBoxContainer"]
+position = Vector2(-247, -83)
+scale = Vector2(3, 2)
+skew = 0.200713
+texture_normal = ExtResource("3_gk8l8")
+texture_pressed = ExtResource("4_ep40h")
+
+[node name="Label3" type="Label" parent="MarginContainer/CanvasLayer/HBoxContainer/Play Again"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.536695
+offset_top = 1.53073
+offset_right = 0.536697
+offset_bottom = 1.53073
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Again"
+label_settings = SubResource("LabelSettings_uumok")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Main_menu" type="TouchScreenButton" parent="MarginContainer/CanvasLayer/HBoxContainer"]
+position = Vector2(-601, 84)
+scale = Vector2(3, 2)
+skew = 0.200713
+texture_normal = SubResource("CompressedTexture2D_li1s1")
+texture_pressed = SubResource("CompressedTexture2D_bxt1y")
+
+[node name="Label2" type="Label" parent="MarginContainer/CanvasLayer/HBoxContainer/Main_menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.333374
+offset_right = 0.333374
+grow_horizontal = 2
+grow_vertical = 2
+text = "Mainmenu"
+label_settings = SubResource("LabelSettings_nsal3")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Exit" type="TouchScreenButton" parent="MarginContainer/CanvasLayer/HBoxContainer"]
+position = Vector2(83, 84)
+scale = Vector2(3, 2)
+skew = 0.200713
+texture_normal = ExtResource("8_rsev4")
+texture_pressed = ExtResource("9_bqusn")
+
+[node name="Label" type="Label" parent="MarginContainer/CanvasLayer/HBoxContainer/Exit"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Exit
+"
+label_settings = SubResource("LabelSettings_jejfl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="game over sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_oeagw")
+volume_db = -13.583
+pitch_scale = 0.8
+
+[connection signal="pressed" from="MarginContainer/CanvasLayer/HBoxContainer/Play Again" to="." method="_on_play_again_pressed"]
+[connection signal="pressed" from="MarginContainer/CanvasLayer/HBoxContainer/Main_menu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="MarginContainer/CanvasLayer/HBoxContainer/Exit" to="." method="_on_exit_pressed"]

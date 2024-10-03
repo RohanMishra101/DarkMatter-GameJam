@@ -1,0 +1,262 @@
+[gd_scene load_steps=18 format=3 uid="uid://dbeb6qpvsfvfk"]
+
+[ext_resource type="Script" path="res://Script/HOW-TO-PLAY/how_to_play.gd" id="1_x2fs0"]
+[ext_resource type="Texture2D" uid="uid://chopn6l4qgg3n" path="res://Assets/Environment/ground.png" id="1_xyju1"]
+[ext_resource type="FontFile" uid="uid://cxjjsp5bq7fmi" path="res://Assets/Font/PressStart2P-Regular.ttf" id="2_vrbng"]
+[ext_resource type="Texture2D" uid="uid://dtpwn1iuqokv0" path="res://Assets/Projectiles/Thukk.png" id="3_utmb1"]
+[ext_resource type="Texture2D" uid="uid://06fukiyjwjel" path="res://Assets/Icon/portal_icon.png" id="4_hmbpo"]
+[ext_resource type="Texture2D" uid="uid://dxegy6bl0ltib" path="res://Assets/Icon/speed.png" id="5_6bnvh"]
+[ext_resource type="Texture2D" uid="uid://n3d4srpqq0gr" path="res://Assets/Stone Tablets/soul_stand.png" id="6_fhel7"]
+[ext_resource type="Texture2D" uid="uid://dh3bypejvcagr" path="res://Assets/UI/PNG/Blue/Default/button_rectangle_gloss.png" id="7_6xdsh"]
+[ext_resource type="Texture2D" uid="uid://bdpl35y6u0a8h" path="res://Assets/UI/PNG/Blue/Default/button_rectangle_gradient.png" id="8_7htku"]
+[ext_resource type="Texture2D" uid="uid://dj26flofrp6k7" path="res://Assets/UI/PNG/Yellow/Default/button_rectangle_gloss.png" id="9_k3co7"]
+[ext_resource type="Texture2D" uid="uid://c2w4jx7uxryrm" path="res://Assets/UI/PNG/Yellow/Default/button_rectangle_gradient.png" id="10_pgopu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ef7h"]
+font = ExtResource("2_vrbng")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_qeoao"]
+font = ExtResource("2_vrbng")
+font_size = 18
+
+[sub_resource type="LabelSettings" id="LabelSettings_fdjs6"]
+font = ExtResource("2_vrbng")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_ag7t4"]
+font = ExtResource("2_vrbng")
+font_size = 42
+
+[sub_resource type="LabelSettings" id="LabelSettings_wa0dk"]
+font = ExtResource("2_vrbng")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_r5fcp"]
+font = ExtResource("2_vrbng")
+font_size = 24
+
+[node name="How to Play" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x2fs0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="MarginContainer"]
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_xyju1")
+
+[node name="Label" type="Label" parent="MarginContainer/CanvasLayer/TextureRect"]
+layout_mode = 1
+offset_left = 214.0
+offset_top = 167.0
+offset_right = 470.0
+offset_bottom = 200.0
+text = "Movement
+"
+label_settings = SubResource("LabelSettings_7ef7h")
+
+[node name="movement_des" type="Label" parent="MarginContainer/CanvasLayer/TextureRect/Label"]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 72.0
+offset_right = 256.0
+offset_bottom = 177.0
+text = "W = UP
+A = LEFT
+S = DOWN
+D = RIGHT 
+
+USE MOUSE AS CURSOR TO POINT"
+label_settings = SubResource("LabelSettings_qeoao")
+
+[node name="Label2" type="Label" parent="MarginContainer/CanvasLayer/TextureRect"]
+layout_mode = 1
+offset_left = 941.0
+offset_top = 170.0
+offset_right = 1229.0
+offset_bottom = 203.0
+text = "ABILITIES"
+label_settings = SubResource("LabelSettings_fdjs6")
+
+[node name="Primary" type="Label" parent="MarginContainer/CanvasLayer/TextureRect/Label2"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 78.0
+offset_right = 845.0
+offset_bottom = 183.0
+text = "PRIMARY:
+
+SIPTS ACIDIC SALIVA WHICH CAN DAMAGE PLAYER
+THEMSELFS IF USED RAPIDLY AT A TIME
+
+
+MOUSE_LEFT_CLICK  = SHOOT BULLET
+"
+label_settings = SubResource("LabelSettings_qeoao")
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/CanvasLayer/TextureRect/Label2/Primary"]
+position = Vector2(84, 191)
+scale = Vector2(10.1875, 8.5625)
+texture = ExtResource("3_utmb1")
+
+[node name="Secondary" type="Label" parent="MarginContainer/CanvasLayer/TextureRect/Label2"]
+layout_mode = 1
+offset_left = -6.0
+offset_top = 343.0
+offset_right = 834.0
+offset_bottom = 487.0
+text = "SECONDARY:
+
+PLAYER CAN HAVE ADDITIONAL ABILITY SUCH AS 
+TELEPORTATION AND SUPER SPEED 
+BUT HAVE THEIR OWN DRAWBACKS
+
+MOUSE_RIGHT_CLICK = USE UNIQUE ABILITY"
+label_settings = SubResource("LabelSettings_qeoao")
+
+[node name="label" type="Label" parent="MarginContainer/CanvasLayer/TextureRect/Label2/Secondary"]
+layout_mode = 1
+offset_left = 34.4
+offset_top = 391.4
+offset_right = 226.4
+offset_bottom = 415.4
+text = "Teleport"
+label_settings = SubResource("LabelSettings_qeoao")
+
+[node name="label2" type="Label" parent="MarginContainer/CanvasLayer/TextureRect/Label2/Secondary"]
+layout_mode = 1
+offset_left = 320.4
+offset_top = 391.4
+offset_right = 584.4
+offset_bottom = 415.4
+text = "Super Speed"
+label_settings = SubResource("LabelSettings_qeoao")
+
+[node name="teleport" type="Sprite2D" parent="MarginContainer/CanvasLayer/TextureRect/Label2/Secondary"]
+position = Vector2(126.4, 273.4)
+scale = Vector2(3.2, 3.2)
+texture = ExtResource("4_hmbpo")
+
+[node name="super speed" type="Sprite2D" parent="MarginContainer/CanvasLayer/TextureRect/Label2/Secondary"]
+position = Vector2(445.4, 273.4)
+scale = Vector2(3.2, 3.2)
+texture = ExtResource("5_6bnvh")
+
+[node name="Label3" type="Label" parent="MarginContainer/CanvasLayer/TextureRect"]
+layout_mode = 1
+offset_left = 181.0
+offset_top = 479.0
+offset_right = 559.0
+offset_bottom = 521.0
+text = "OBJECTIVE"
+label_settings = SubResource("LabelSettings_ag7t4")
+
+[node name="DES" type="Label" parent="MarginContainer/CanvasLayer/TextureRect/Label3"]
+offset_left = 10.0
+offset_top = 69.0
+offset_right = 202.0
+offset_bottom = 93.0
+text = "6 STONE TABLETS ARE SCATARED AROUND
+THE WORLD. SHOOT THEM WITH YOUR 
+PRIMARY ATTACK TO ACTIVATE THEM WHEN
+ALL OF THE 6 STONE TABLET ARE ACTIVATED 
+YOU WIN THE GAME
+(NOTE: HUNTERS ARE LURKING AROUND YOU)"
+label_settings = SubResource("LabelSettings_qeoao")
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/CanvasLayer/TextureRect/Label3"]
+position = Vector2(125, 280)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("6_fhel7")
+hframes = 2
+
+[node name="label3" type="Label" parent="MarginContainer/CanvasLayer/TextureRect/Label3"]
+layout_mode = 1
+offset_left = 17.0
+offset_top = 347.0
+offset_right = 251.0
+offset_bottom = 371.0
+text = "STONE  TABLET"
+label_settings = SubResource("LabelSettings_qeoao")
+
+[node name="label4" type="Label" parent="MarginContainer/CanvasLayer/TextureRect/Label3"]
+layout_mode = 1
+offset_left = 288.0
+offset_top = 346.0
+offset_right = 522.0
+offset_bottom = 385.0
+text = "STONE  TABLET
+ (ACTIVATED)"
+label_settings = SubResource("LabelSettings_qeoao")
+
+[node name="Sprite2D2" type="Sprite2D" parent="MarginContainer/CanvasLayer/TextureRect/Label3"]
+position = Vector2(399, 280)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("6_fhel7")
+hframes = 2
+frame = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -84.0
+offset_bottom = 73.0
+grow_horizontal = 0
+
+[node name="Play" type="TouchScreenButton" parent="MarginContainer/CanvasLayer/HBoxContainer"]
+position = Vector2(-156, 42)
+skew = 0.200713
+texture_normal = ExtResource("7_6xdsh")
+texture_pressed = ExtResource("8_7htku")
+
+[node name="Label" type="Label" parent="MarginContainer/CanvasLayer/HBoxContainer/Play"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play"
+label_settings = SubResource("LabelSettings_wa0dk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/CanvasLayer"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back" type="TouchScreenButton" parent="MarginContainer/CanvasLayer/HBoxContainer2"]
+position = Vector2(49, 49)
+skew = 0.200713
+texture_normal = ExtResource("9_k3co7")
+texture_pressed = ExtResource("10_pgopu")
+
+[node name="Label" type="Label" parent="MarginContainer/CanvasLayer/HBoxContainer2/Back"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BACK"
+label_settings = SubResource("LabelSettings_r5fcp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/CanvasLayer/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/CanvasLayer/HBoxContainer2/Back" to="." method="_on_back_pressed"]

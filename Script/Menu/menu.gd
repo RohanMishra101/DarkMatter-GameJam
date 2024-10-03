@@ -8,7 +8,7 @@ func _on_play_btn_pressed():
 
 
 func _on_how_btn_pressed():
-	pass # Replace with function body.
+	GameManager._changeScene(GameManager.how_to_play)
 
 
 func _on_exit_btn_pressed():

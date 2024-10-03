@@ -3,8 +3,12 @@ extends CharacterBody2D
 @onready var power_selection = $CanvasLayer/PowerSelection
 @onready var secondary_weapon_cooldown = $secondary_weapon_cooldown
 @onready var super_speed = $super_speed
+@onready var overload_timer = $overload_timer
+@onready var primary_ability_cooldown_timer = $primary_ability_cooldown_timer
 
 var speed := 200.0
+var max_health := 100
+var current_health
 var is_attacking = false
 var can_thukk := true
 var super_power
@@ -12,6 +16,14 @@ var is_secondary_enable := false
 var thukkDmg := 20
 var mouseDir
 var punch_Distance
+var knockback_strength := 300.0
+
+#Primary ability 
+var rapid_shoot_count = 0
+var shoot_limit = 30
+var is_overloaded = false
+var max_overload_duration = 5.0
+var overload_damage_range = [20, 40]
 
 # Teleportation radius
 var min_radius = 250
@@ -27,14 +39,27 @@ signal ui_cooldown_time(cooldown_timer)
 signal secondary_ui_icon(card_icon)
 signal depricate_time(random_time)
 signal accelerated_timer(times)
+signal healthBarProgress(current_health,max_health)
+signal shooting_progress(progress)
+signal primary_ability_overloded(cooldown)
+signal enable_enemy(enable)
+
+var is_enemy_enable = false
 func _ready():
+	GameManager.player = self
 	set_process(false)
 	set_physics_process(false)
 	handleMouseFunction()
-	velocity = Vector2.ZERO
 	connect_power_card()
+	current_health = max_health
+	velocity = Vector2.ZERO
 	$"Heavy Punch".visible = false
-
+	overload_timer.one_shot = true
+	overload_timer.wait_time = 1.5
+	
+	primary_ability_cooldown_timer.one_shot = true
+	primary_ability_cooldown_timer.wait_time = max_overload_duration
+	enable_enemy.emit(is_enemy_enable)
 	# Connect the timer's timeout signal to a function to reset cooldown
 	#secondary_weapon_cooldown.connect("timeout", self, "_on_secondary_weapon_cooldown_timeout")
 
@@ -47,8 +72,10 @@ func connect_power_card():
 func on_power_card_selected(card_effect):
 	set_process(true)
 	set_physics_process(true)
+	is_enemy_enable = true
 	set_timer.emit()
 	$CanvasLayer/PowerSelection.visible = not $CanvasLayer/PowerSelection.visible
+	$CanvasLayer/PowerSelection/CanvasLayer.visible = false
 	is_secondary_enable = true
 	super_power = card_effect
 	secondary_ui_icon.emit(card_effect)
@@ -61,12 +88,16 @@ func on_power_card_selected(card_effect):
 			print("super_speed Yet to implement")
 
 func _process(_delta):
-	handle_cards_section()
+	#print("Shoot count : ", rapid_shoot_count)
+	healthBarProgress.emit(current_health,max_health)
+	#handle_cards_section()
+	enable_enemy.emit(is_enemy_enable)
 	mouseDir = get_mouse_direction()
 	handlePathRotation()
 
 	if Input.is_action_just_pressed("main_attack"):
 		handle_attack()
+		$bullet_sound.play()
 
 	# Check and print the cooldown timer if it's active
 	if on_cooldown:
@@ -96,7 +127,8 @@ func _process(_delta):
 					#Decrease Health as drawback from 20%-60%
 					start_cooldown(30)
 				print("YET TO IMPLEMENT")
-
+	if current_health <= 0:
+		die()
 func print_cooldown_timer(delta):
 	# Decrease the cooldown time and print it
 	if cooldown_time > 0:
@@ -142,6 +174,9 @@ func handle_movement(_delta):
 	move_and_slide()
 
 func handle_attack():
+	if is_overloaded:
+		return
+	
 	is_attacking = true
 	mouseDir = get_mouse_direction()
 	var thukk_position = $main_attack_marker/Marker2D.global_position
@@ -154,10 +189,38 @@ func handle_attack():
 
 	if not $AnimatedSprite2D.is_connected("animation_finished", Callable(self, "_on_attack_animation_finished")):
 		$AnimatedSprite2D.connect("animation_finished", Callable(self, "_on_attack_animation_finished"))
+	
+	
+	if not overload_timer.is_stopped():
+		overload_timer.start() 
+	else:
+		overload_timer.start()
+	
+	rapid_shoot_count += 1
+	
+	if rapid_shoot_count <= shoot_limit:
+		shooting_progress.emit(float(rapid_shoot_count) / shoot_limit * 100)
+	if rapid_shoot_count >= shoot_limit:
+		trigger_overload()
+	
 
-func handle_cards_section():
-	if Input.is_action_just_pressed("select_card"):
-		power_selection.visible = not power_selection.visible
+func trigger_overload():
+	is_overloaded = true
+	rapid_shoot_count = 0  
+	shooting_progress.emit(100)
+	primary_ability_cooldown_timer.start()  # Start cooldown before the player can shoot again
+
+	# Apply health damage to the player
+	var overload_damage = randi_range(overload_damage_range[0], overload_damage_range[1])
+	apply_damage_to_player(overload_damage)
+	primary_ability_overloded.emit("Primary Ability Disabled for 5sec")
+
+	# Optionally, play a visual/audio cue for overload here
+	#print("Shooting overload! Gun disabled for 5 seconds. Player health decreased by %d" % overload_damage)
+
+#func handle_cards_section():
+	#if Input.is_action_just_pressed("select_card"):
+		#power_selection.visible = not power_selection.visible
 
 func _on_attack_animation_finished():
 	is_attacking = false
@@ -178,12 +241,13 @@ func handlePathRotation():
 
 func start_cooldown(timer):
 	on_cooldown = true
-	cooldown_time = timer  
+	cooldown_time = timer
 	secondary_weapon_cooldown.start(timer)
 
 func _on_secondary_weapon_cooldown_timeout():
 	on_cooldown = false  # Reset cooldown flag
 	cooldown_time = 0  # Reset cooldown time
+	
 	print("Ability is ready to use again!")
 
 
@@ -191,3 +255,28 @@ func _on_super_speed_timeout():
 	speed = 200
 	thukkDmg = 20
 	print("Super Speed Back to normal")
+
+
+func _on_overload_timer_timeout():
+	rapid_shoot_count = 0
+	shooting_progress.emit(0)
+	
+func _on_primary_ability_cooldown_timer_timeout():
+	is_overloaded = false
+	shooting_progress.emit(0)
+	
+func apply_damage_to_player(damage):
+	current_health -= damage
+	if current_health <= 0:
+		current_health = 0
+		print("Player is dead")
+
+
+func hit(damage: int):
+	current_health -= damage
+	if current_health <= 0:
+		die()
+
+func die():
+	print("You Died")
+	GameManager._changeScene(GameManager.game_over_menu)

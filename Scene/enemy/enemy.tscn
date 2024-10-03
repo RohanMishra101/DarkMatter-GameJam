@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://bk1rjyocgukx0"]
+
+[ext_resource type="Script" path="res://Script/enemy/enemy.gd" id="1_0lgsv"]
+[ext_resource type="Texture2D" uid="uid://c1oddqpybcgm6" path="res://Assets/enemy/enemy.png" id="1_e3gw6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq7x0"]
+atlas = ExtResource("1_e3gw6")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysgne"]
+atlas = ExtResource("1_e3gw6")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04cvk"]
+atlas = ExtResource("1_e3gw6")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb7wu"]
+atlas = ExtResource("1_e3gw6")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rbyl"]
+atlas = ExtResource("1_e3gw6")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnbfc"]
+atlas = ExtResource("1_e3gw6")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yn6j3"]
+atlas = ExtResource("1_e3gw6")
+region = Rect2(80, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0sdrj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gq7x0")
+}],
+"loop": true,
+"name": &"Stun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysgne")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04cvk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb7wu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rbyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnbfc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yn6j3")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xisg3"]
+height = 22.0
+
+[node name="enemy" type="AnimatedSprite2D" groups=["enemy"]]
+sprite_frames = SubResource("SpriteFrames_0sdrj")
+animation = &"Stun"
+script = ExtResource("1_0lgsv")
+
+[node name="Hitbox" type="Area2D" parent="." groups=["enemy"]]
+collision_layer = 2
+collision_mask = 31
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_xisg3")
+
+[node name="Stun_Timer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="Stun_Timer" to="." method="_on_stun_timer_timeout"]
